@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Obstawianie meczu</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #2e2e33;
+            color: #ffffff;
+            padding: 20px;
+            position: relative;
+        }
+        .match-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .team-container {
+            text-align: center;
+            margin: 20px;
+        }
+        .team-name {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .team-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
+        .bet-button {
+            padding: 10px 20px;
+            background-color: #000000;
+            color: #ff0000;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+        .bet-button:hover {
+            background-color: #ffffff;
+        }
+        .bet-button:disabled {
+            background-color: #621cdb;
+            cursor: not-allowed;
+        }
+        .toggle-theme-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background-color: #000000;
+            color: #ffffff;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <button class="toggle-theme-button" onclick="toggleTheme()">Zmień tło</button>
+    <h1>Obstawianie meczu</h1>
+
+    <div class="match-container">
+        <div class="match-time">Godzina rozpoczęcia:21.06 18:00</div>
+        <div class="team-container">
+            <img class="team-image" src="polska.png" alt="Drużyna A">
+            <div class="team-name">Drużyna A</div>
+            <button id="betButtonDrużynaA" class="bet-button" onclick="placeBet('DrużynaA', 'DrużynaB')">Obstaw</button>
+            <p id="votesDrużynaA">Liczba głosów: 0</p>
+        </div>
+        <div class="team-container">
+            <img class="team-image" src="austria.png" alt="Drużyna B">
+            <div class="team-name">Drużyna B</div>
+            <button id="betButtonDrużynaB" class="bet-button" onclick="placeBet('DrużynaB', 'DrużynaA')">Obstaw</button>
+            <p id="votesDrużynaB">Liczba głosów: 0</p>
+        </div>
+    </div>
+
+    <div class="match-container">
+        <div class="match-time">Godzina rozpoczęcia:18:00</div>
+        <div class="team-container">
+            <img class="team-image" src="anglia.png" alt="Drużyna C">
+            <div class="team-name">Drużyna C</div>
+            <button id="betButtonDrużynaC" class="bet-button" onclick="placeBet('DrużynaC', 'DrużynaD')">Obstaw</button>
+            <p id="votesDrużynaC">Liczba głosów: 0</p>
+        </div>
+        <div class="team-container">
+            <img class="team-image" src="dania.png" alt="Drużyna D">
+            <div class="team-name">Drużyna D</div>
+            <button id="betButtonDrużynaD" class="bet-button" onclick="placeBet('DrużynaD', 'DrużynaC')">Obstaw</button>
+            <p id="votesDrużynaD">Liczba głosów: 0</p>
+        </div>
+    </div>
+
+    <div class="match-container">
+        <div class="match-time">Godzina rozpoczęcia: 21:00</div>
+        <div class="team-container">
+            <img class="team-image" src="chiszpania.png" alt="Drużyna E">
+            <div class="team-name">Drużyna E</div>
+            <button id="betButtonDrużynaE" class="bet-button" onclick="placeBet('DrużynaE', 'DrużynaF')">Obstaw</button>
+            <p id="votesDrużynaE">Liczba głosów: 0</p>
+        </div>
+        <div class="team-container">
+            <img class="team-image" src="włochy.png" alt="Drużyna F">
+            <div class="team-name">Drużyna F</div>
+            <button id="betButtonDrużynaF" class="bet-button" onclick="placeBet('DrużynaF', 'DrużynaE')">Obstaw</button>
+            <p id="votesDrużynaF">Liczba głosów: 0</p>
+        </div>
+    </div>
+
+    <div class="match-container">
+        <div class="match-time">Godzina rozpoczęcia: 15:00</div>
+        <div class="team-container">
+            <img class="team-image" src="Słowenia.png" alt="Drużyna G">
+            <div class="team-name">Drużyna G</div>
+            <button id="betButtonDrużynaG" class="bet-button" onclick="placeBet('DrużynaG', 'DrużynaH')">Obstaw</button>
+            <p id="votesDrużynaG">Liczba głosów: 0</p>
+        </div>
+        <div class="team-container">
+            <img class="team-image" src="serbia.png" alt="Drużyna H">
+            <div class="team-name">Drużyna H</div>
+            <button id="betButtonDrużynaH" class="bet-button" onclick="placeBet('DrużynaH', 'DrużynaG')">Obstaw</button>
+            <p id="votesDrużynaH">Liczba głosów: 0</p>
+        </div>
+    </div>
+
+    <div class="match-container">
+        <div class="match-time">Godzina rozpoczęcia 21.06 15:00</div>
+        <div class="team-container">
+            <img class="team-image" src="słowacja.png" alt="Drużyna I">
+            <div class="team-name">Drużyna I</div>
+            <button id="betButtonDrużynaI" class="bet-button" onclick="placeBet('DrużynaI', 'DrużynaJ')">Obstaw</button>
+            <p id="votesDrużynaI">Liczba głosów: 0</p>
+        </div>
+        <div class="team-container">
+            <img class="team-image" src="Ukraina.png" alt="Drużyna J">
+            <div class="team-name">Drużyna J</div>
+            <button id="betButtonDrużynaJ" class="bet-button" onclick="placeBet('DrużynaJ', 'DrużynaI')">Obstaw</button>
+            <p id="votesDrużynaJ">Liczba głosów: 0</p>
+        </div>
+    </div>
+    <script>
+        function placeBet(team, opponentTeam) {
+            let userVotedTeam = localStorage.getItem(`voted_${team}`);
+            let userVotedOpponent = localStorage.getItem(`voted_${opponentTeam}`);
+            
+            if (userVotedTeam || userVotedOpponent) {
+                alert("Możesz zagłosować tylko na jedną drużynę z pary!");
+                return;
+            }
+            let votes = localStorage.getItem(team) ? parseInt(localStorage.getItem(team)) : 0;
+            votes++;
+            localStorage.setItem(team, votes.toString());
+
+           
+            localStorage.setItem(`voted_${team}`, 'true');
+            document.getElementById(`votes${team}`).textContent = `Liczba głosów: ${votes}`;
+            document.getElementById(`betButton${team}`).disabled = true;
+        }        function initializeVotes() {
+            ['DrużynaA', 'DrużynaB', 'DrużynaC', 'DrużynaD', 'DrużynaE', 'DrużynaF', 'DrużynaG', 'DrużynaH', 'DrużynaI', 'DrużynaJ'].forEach(team => {
+                let votes = localStorage.getItem(team);
+                if (votes) {
+                    document.getElementById(`votes${team}`).textContent = `Liczba głosów: ${votes}`;
+                }
+                let userVoted = localStorage.getItem(`voted_${team}`);
+                if (userVoted) {
+                    document.getElementById(`betButton${team}`).disabled = true;
+                }
+            });
+        }
+
+        function toggleTheme() {
+            let currentTheme = document.body.style.backgroundColor;
+            if (currentTheme === 'rgb(46, 46, 51)' || currentTheme === '#2e2e33') {
+                document.body.style.backgroundColor = '#ffffff';
+                document.body.style.color = '#000000';
+            } else {
+                document.body.style.backgroundColor = '#2e2e33';
+                document.body.style.color = '#ffffff';
+            }
+        }
+
+        initializeVotes();
+    </script>
+</body>
+</html>
+
+       
